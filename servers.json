@@ -1,0 +1,34 @@
+[
+  {
+    "id": "server1",
+    "name": "DeceasedCraft",
+    "version": "1.18",
+    "description": "DeceasedCraft Beta DH Edition",
+    "bat": "G:\\Server\\MC\\1.18\\DeceasedCraft_Server_Beta_DH_Edition_5.10.16\\run.bat",
+    "port": 25566
+  },
+  {
+    "id": "server2",
+    "name": "Immersive Wealthering",
+    "version": "1.20.1",
+    "description": "Survival Indefinido relajado",
+    "bat": "G:\\Server\\MC\\1.20.1\\Chilling\\start_flags.bat",
+    "port": 25565
+  },
+  {
+    "id": "server3",
+    "name": "Technic Craft",
+    "version": "1.21.10",
+    "description": "Survival Tecnico",
+    "bat": "G:\\Server\\MC\\Neo_21.1\\CREATO\\run.bat",
+    "port": 25567
+  },
+  {
+    "id": "server4",
+    "name": "Survival Vanilla++",
+    "version": "1.21.11",
+    "description": "Descripción del servidor",
+    "bat": "G:\\Server\\MC\\1.21.11\\Test\\flag_start.bat",
+    "port": 25568
+  }
+]

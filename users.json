@@ -1,0 +1,16 @@
+[
+  {
+    "role": "Admin",
+    "password": "210512039",
+    "allowedServers": [
+      "*"
+    ]
+  },
+  {
+    "role": "DeceasedCraft",
+    "password": "deceased123",
+    "allowedServers": [
+      "server1"
+    ]
+  }
+]
