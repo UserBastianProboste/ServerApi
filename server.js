@@ -7,6 +7,7 @@
 const express = require("express");
 const { exec, spawn } = require("child_process");
 const net = require("net");
+const os = require("os");
 const path = require("path");
 const fs = require("fs");
 
@@ -50,23 +51,31 @@ const runningProcesses = {};
 //  MIDDLEWARE: Verificar token
 // ─────────────────────────────────────────────
 function authMiddleware(req, res, next) {
-  if (req.path === "/login" || req.path === "/" || req.path === "/index.html" || req.path.endsWith(".css") || req.path.endsWith(".js")) return next();
+  if (req.path === "/login") return next();
   const token = req.headers["x-panel-token"];
-  
+
   const users = getUsers();
   const user = users.find(u => u.password === token);
 
   if (!user) {
     return res.status(401).json({ error: "No autorizado" });
   }
-  
+
   req.user = user;
   next();
 }
 app.use(authMiddleware);
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+// ─────────────────────────────────────────────
+//  GET /resources
+// ─────────────────────────────────────────────
+app.get("/resources", (req, res) => {
+  res.json({
+    totalMem: os.totalmem(),
+    freeMem: os.freemem(),
+    cpuLoad: os.loadavg(),
+    uptime: os.uptime()
+  });
 });
 
 // ─────────────────────────────────────────────
@@ -115,7 +124,7 @@ function checkProcess(serverId) {
 // ─────────────────────────────────────────────
 app.get("/servers", async (req, res) => {
   let serversList = getServers();
-  
+
   // Filtramos por los permisos del usuario conectado
   if (!req.user.allowedServers.includes("*")) {
     serversList = serversList.filter(s => req.user.allowedServers.includes(s.id));
